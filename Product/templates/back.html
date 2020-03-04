@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script>
+    var doneStuff; 
+    if (!doneStuff);
+    doneStuff = true;
+    var timeStart = new Date().getTime();
+    var teachervar = false;
+    var color = red;
+  </script>
+<!-- sets the variables -->
+
+
+</head>
+<script>
+  function setvariables() {
+    document.getElementById("alert").innerHTML =
+      "STUDENT HAS BEEN OUT FOR MORE THAN 7 MINUTES. PLEASE ALERT YOUR TEACHER!";
+    document.getElementById("disable").disabled = false;
+  }
+</script>
+
+<body style="background-color:color;">
+  </h1>
+  <h2>{{ fnamew }} is currently out</h2>
+  <p>Press the button below if you are returning. </p>
+  <p2>The student left at: {{ variable }}</p2>
+ <!-- this is what is displayed on the screen. -->
+  <p id="demo"></p>
+  <p id="alert"></p>
+  <!-- https://www.w3schools.com/howto/howto_js_countdown.asp -->
+  <script>
+    // Set the date we're counting down to
+    var countDownDate = new Date().getTime();
+    // Update the count down every 1 second
+    var x = setInterval(function () {
+      // Get today's date and time
+      var now = new Date().getTime();
+      // Find the distance between now and the count down date
+      var distance = now - timeStart;
+      var colour = "white"; 
+      var out = 0;
+      document.body.style.backgroundColor = colour;
+      // Time calculations for days, hours, minutes and seconds
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      // Display the result in the element with id="demo"
+      document.getElementById("demo").innerHTML = hours + "h " +
+        minutes + "m " + seconds + "s ";
+      // 600000=10mins
+      if (distance > (600000/10)*.25 && !teachervar) {
+        setvariables()
+        if (seconds % 2 == 0 && !teachervar)
+        {
+          var colour = "red"
+          document.body.style.backgroundColor = colour;
+        }
+      }
+    }, 1000);
+  </script>
+  <!-- most of the code is written by an example. I mearly addaped it for my needs. From the start of this script 
+  till the end of the script -->
+
+
+  <button onclick="goto()">I'm back</button>
+
+  <script>
+    function goto() {
+      location.replace("http://127.0.0.1:5000/")
+    }
+  </script>
+  <button id='disable' onclick="teacher()" disabled>Turn Off Alert</button>
+  <script> //this section disables the alarm when pressed
+    function teacher() {
+      teachervar = true;
+    }
+  </script>
+</body>
